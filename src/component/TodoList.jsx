@@ -1,5 +1,13 @@
+import Todo from "./Todo";
+
 function TodoList() {
-  return <div>TodoList</div>;
+  return (
+    <>
+      <Todo content='Hello friends'/>
+      <Todo content='Hello friends'/>
+      <Todo content='Hello friends'/>
+    </>
+  )
 }
 
 export default TodoList;

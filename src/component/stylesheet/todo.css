@@ -1,0 +1,18 @@
+.todo-container{
+  width: 90%;
+  border: 2px solid white;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 5px;
+  gap: 10px;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+.todo-container span{
+  flex-grow: 1;
+  color: white;
+  font-size: 1.2rem;
+}

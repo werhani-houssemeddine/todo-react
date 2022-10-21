@@ -4,6 +4,20 @@
   box-sizing: border-box;
 }
 
+#root{
+  height: 100vh;
+  background-color: #041c32e1;
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  align-items: start;
+}
+
 main{
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(600px,70%,800px);
 }
