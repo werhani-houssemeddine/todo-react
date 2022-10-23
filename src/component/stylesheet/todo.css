@@ -1,4 +1,4 @@
-.todo-container{
+.todo-container {
   width: 90%;
   border: 2px solid white;
   height: 45px;
@@ -11,8 +11,14 @@
   margin-top: 10px;
 }
 
-.todo-container span{
+.todo-container span {
   flex-grow: 1;
   color: white;
   font-size: 1.2rem;
+}
+
+.todo-container svg {
+  transform: scale(1.2);
+  margin: 0 5px;
+  cursor: pointer;
 }

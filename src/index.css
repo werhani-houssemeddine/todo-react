@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-#root{
+#root {
   height: 100vh;
   background-color: #041c32e1;
   margin: 0 auto;
@@ -13,11 +13,11 @@
   align-items: start;
 }
 
-main{
+main {
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: clamp(600px,70%,800px);
+  width: clamp(600px, 70%, 800px);
 }
