@@ -35,16 +35,16 @@ route.post('/', (req, res) => {
 
 route.put('/:id', (req, res, next) => {
   const id = req.params.id;
-  res.send({message: 'Put request '});
+  res.send({ message: 'Put request ' });
 });
 
 route.delete('/:id', (req, res) => {
-  res.send({message: 'Delete request'});
+  res.send({ message: 'Delete request' });
 });
 
 route.use((req, res) => {
-  const method = req.method === 'PUT' ? 'Put' : 'Delete'
-  res.send({message: `${method} request invalid`});
+  const method = req.method === 'PUT' ? 'Put' : 'Delete';
+  res.send({ message: `${method} request invalid` });
 });
 
 module.exports = route;

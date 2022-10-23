@@ -1,5 +1,5 @@
 const express = require('express');
-const fs = require('fs');
+const cors = require('cors');
 
 const app = express();
 
@@ -15,6 +15,9 @@ console.log(app.get('env'));
 // To parse the encoming request
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// To handle cors policy
+app.use(cors({ origin: '*' }));
 
 app.get('/', (req, res) => {
   res.send({ message: 'App running succssfully' });
