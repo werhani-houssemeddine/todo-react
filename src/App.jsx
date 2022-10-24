@@ -1,12 +1,8 @@
-import TodoList from './component/TodoList';
-import Form from './component/Form';
+import Main from './component/Main';
 
 function App() {
   return (
-    <main>
-      <Form />
-      <TodoList />
-    </main>
+    <Main />
   );
 }
 

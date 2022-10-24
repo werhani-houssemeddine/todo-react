@@ -11,6 +11,17 @@
   margin-top: 10px;
 }
 
+#todos-container{
+  width: 100%;
+  border-radius: 7px;
+  border: 2px solid gray;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+}
+
 .todo-container span {
   flex-grow: 1;
   color: white;

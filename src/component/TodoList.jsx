@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
 import Todo from './Todo';
 
-function TodoList() {
-  const [todo, setTodo] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:1025/todo-api')
-      .then((res) => res.json())
-      .then(({ data }) => setTodo(data))
-      .catch((err) => console.error(err));
-  }, []);
+function TodoList({todo, setTodo}) {
 
   //console.log(todo);
 
@@ -36,13 +28,13 @@ function TodoList() {
   });
 
   return (
-    <>
+    <div id='todos-container'>
       {todo.length === 0 ? (
         <h1>No Element ...</h1>
       ) : (
         todo.map((ele) => <Todo content={ele} key={ele.id} methods={fns()} />)
       )}
-    </>
+    </div>
   );
 }
 

@@ -7,10 +7,12 @@ function Todo({ content, methods }) {
 
   //console.log({ methods });
 
+  const spanStyle = { textDecoration: 'line-through', color: 'grey' }
+
   return (
     <div className="todo-container">
       <input type="checkbox" name="" checked={isDone} onChange={() => checkHandler(id)} />
-      <span htmlFor="">{todo}</span>
+      <span style={isDone ? spanStyle : {}}>{todo}</span>
       <div className="icons">
         <FaEdit color="white" onClick={() => editHandler(id)} />
         <FaTrash color="white" onClick={() => delHandler(id)} />
