@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const fs = require('fs');
 const path = require('path');
+const { v4: uuid4 } = require('uuid');
 
 const route = Router();
 
@@ -20,15 +21,17 @@ route.get('/', (req, res) => {
 
 route.post('/', (req, res) => {
   const oldData = require('./data.json');
+  console.log(oldData);
   const { data } = req.body;
+  const todo = { todo: data, id: uuid4(), isDone: false };
 
   fs.writeFile(
     filePath,
-    JSON.stringify([...oldData, data]),
+    JSON.stringify([...oldData, todo]),
     { encoding: 'utf-8', flag: 'w' },
     (err) => {
       if (err) return res.send({ ok: false, message: err.message });
-      return res.send({ ok: true, message: 'add succssfully', data: _data });
+      return res.send({ ok: true, message: 'add succssfully', data: todo });
     }
   );
 });

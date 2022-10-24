@@ -1,0 +1,17 @@
+[
+  {
+    "todo": "Go to scj",
+    "id": "4ddb1091-6629-465c-9c29-978e8ca9a5bd",
+    "isDone": true
+  },
+  {
+    "todo": "Go to GYM",
+    "id": "934a2a4a-8dec-47e4-9e4b-8b98681ab9a4",
+    "isDone": false
+  },
+  {
+    "todo": "BUY NEW CARS ",
+    "id": "a2297fc4-a2e6-4da4-badc-d86173b57331",
+    "isDone": false
+  }
+]
