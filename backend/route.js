@@ -21,7 +21,7 @@ route.get('/', (req, res) => {
 
 route.post('/', (req, res) => {
   const oldData = require('./data.json');
-  console.log(oldData);
+  //console.log(oldData);
   const { data } = req.body;
   const todo = { todo: data, id: uuid4(), isDone: false };
 
@@ -36,16 +36,46 @@ route.post('/', (req, res) => {
   );
 });
 
-route.put('/:id', (req, res, next) => {
+route.put('/check/:id', (req, res) => {
   const id = req.params.id;
-  res.send({ message: 'Put request ' });
+  const oldData = require('./data.json');
+  //console.log(oldData);
+
+  const newData = oldData.map(data => {
+    return data.id === id ? {...data, isDone: !data.isDone} : data
+  });
+
+  fs.writeFile(
+    filePath,
+    JSON.stringify([...newData]),
+    { encoding: 'utf-8', flag: 'w' },
+    (err) => {
+      if (err) return res.send({ ok: false, message: err.message });
+      return res.send({ ok: true, message: 'change succssfully' });
+    }
+  );
 });
 
-route.delete('/:id', (req, res) => {
-  res.send({ message: 'Delete request' });
+route.delete('/del/:id', (req, res) => {
+  const id = req.params.id;
+  const oldData = require('./data.json');
+  //console.log(oldData);
+
+  const newData = oldData.filter(data => data.id !== id);
+
+  fs.writeFile(
+    filePath,
+    JSON.stringify([...newData]),
+    { encoding: 'utf-8', flag: 'w' },
+    (err) => {
+      if (err) return res.send({ ok: false, message: err.message });
+      return res.send({ ok: true, message: 'change succssfully' });
+    }
+  );
 });
 
 route.use((req, res) => {
+  //console.log(req.params);
   const method = req.method === 'PUT' ? 'Put' : 'Delete';
   res.send({ message: `${method} request invalid` });
 });
