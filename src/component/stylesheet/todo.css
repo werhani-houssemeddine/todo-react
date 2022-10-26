@@ -11,7 +11,7 @@
   margin-top: 10px;
 }
 
-#todos-container{
+#todos-container {
   width: 100%;
   border-radius: 7px;
   border: 2px solid gray;
@@ -32,4 +32,15 @@
   transform: scale(1.2);
   margin: 0 5px;
   cursor: pointer;
+}
+
+.edit-form {
+  min-width: 80%;
+}
+
+.todoContent {
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
 }

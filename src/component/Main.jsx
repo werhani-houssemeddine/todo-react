@@ -3,7 +3,6 @@ import TodoList from './TodoList';
 import Form from './Form';
 
 function Main() {
-
   const [todo, setTodo] = useState([]);
 
   useEffect(() => {
@@ -13,8 +12,8 @@ function Main() {
       .catch((err) => console.error(err));
   }, []);
 
-  function getUpdate(data){
-    setTodo(prev => [...prev, data]);
+  function getUpdate(data) {
+    setTodo((prev) => [...prev, data]);
   }
 
   return (
@@ -22,7 +21,7 @@ function Main() {
       <Form set={getUpdate} />
       <TodoList todo={todo} setTodo={setTodo} />
     </main>
-  )
+  );
 }
 
-export default Main
+export default Main;

@@ -36,13 +36,35 @@ route.post('/', (req, res) => {
   );
 });
 
+route.post('/set-element/:id', (req, res) => {
+  const id = req.params.id;
+  const oldData = require('./data.json');
+  //console.log(oldData);
+
+  const newData = oldData.map((data) => {
+    return data.id === id ? { ...data, todo: req.body.newTodo } : data;
+  });
+
+  fs.writeFile(
+    filePath,
+    JSON.stringify([...newData]),
+    { encoding: 'utf-8', flag: 'w' },
+    (err) => {
+      if (err) return res.send({ ok: false, message: err.message });
+      return res.send({ ok: true, message: 'change succssfully' });
+    }
+  );
+
+  res.send({ id, newData });
+});
+
 route.put('/check/:id', (req, res) => {
   const id = req.params.id;
   const oldData = require('./data.json');
   //console.log(oldData);
 
-  const newData = oldData.map(data => {
-    return data.id === id ? {...data, isDone: !data.isDone} : data
+  const newData = oldData.map((data) => {
+    return data.id === id ? { ...data, todo: !data.isDone } : data;
   });
 
   fs.writeFile(
@@ -61,7 +83,7 @@ route.delete('/del/:id', (req, res) => {
   const oldData = require('./data.json');
   //console.log(oldData);
 
-  const newData = oldData.filter(data => data.id !== id);
+  const newData = oldData.filter((data) => data.id !== id);
 
   fs.writeFile(
     filePath,
