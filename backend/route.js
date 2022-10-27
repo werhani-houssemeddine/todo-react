@@ -64,7 +64,7 @@ route.put('/check/:id', (req, res) => {
   //console.log(oldData);
 
   const newData = oldData.map((data) => {
-    return data.id === id ? { ...data, todo: !data.isDone } : data;
+    return data.id === id ? { ...data, isDone: !data.isDone } : data;
   });
 
   fs.writeFile(
