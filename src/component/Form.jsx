@@ -7,8 +7,8 @@ function Form({ set }) {
 
   async function formHandler(e) {
     e.preventDefault();
-    console.log('Send Form');
-
+    
+    if(inputValue !== ''){
     try {
       const result = await fetch('http://localhost:1025/todo-api', {
         method: 'POST',
@@ -27,6 +27,7 @@ function Form({ set }) {
       if (data.ok) {
         console.log(data.message);
         set(data.data);
+        setInputValue('');
       } else {
         console.error(data.message);
       }
@@ -34,10 +35,11 @@ function Form({ set }) {
       console.error('Internal Error', error);
     }
   }
+  }
 
   function inputHandler(e) {
     setIsBlur(() => (e.target.value === '' ? false : true));
-    setInputValue((prev) => e.target.value);
+    setInputValue((prev) => e.target.value.trimStart());
   }
 
   return (

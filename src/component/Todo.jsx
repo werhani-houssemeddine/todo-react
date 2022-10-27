@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 function Todo({ content, methods }) {
   const { id, todo, isDone } = content;
-  const { delHandler, checkHandler } = methods;
+  const { delHandler, checkHandler, todoHandler } = methods;
 
   //console.log({ methods });
 
@@ -13,25 +13,19 @@ function Todo({ content, methods }) {
   const [inputEdit, setInputEdit] = useState(false);
   const [todoContent, setTodoContent] = useState(todo);
 
-  const editHandler = () => {
-    setInputEdit((prev) => !prev);
-  };
-
-  const todoHandler = (e) => {
-    setTodoContent((prev) => e.target.value);
-  };
-
   const sbmNewTodoContent = (e) => {
-    console.log({newTodo: todoContent})
     e.preventDefault();
     fetch(`http://localhost:1025/todo-api/set-element/${id}`, {
       method: 'POST',
-      body: JSON.stringify({newTodo: todoContent}),
+      body: JSON.stringify({ newTodo: todoContent }),
       headers: { 'Content-Type': 'application/json' },
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      if(res.ok){
+        todoHandler(todoContent, id);
+      }
+    });
 
-    setInputEdit(prev => !prev);
-    setTodoContent(todoContent);
+    setInputEdit((prev) => !prev);
   };
 
   return (
@@ -48,7 +42,7 @@ function Todo({ content, methods }) {
             type="text"
             name="newTodo"
             value={todoContent}
-            onChange={todoHandler}
+            onChange={(e) => setTodoContent(e.target.value)}
             className="todoContent"
           />
         </form>
@@ -56,7 +50,7 @@ function Todo({ content, methods }) {
         <span style={isDone ? spanStyle : {}}>{todo}</span>
       )}
       <div className="icons">
-        <FaEdit color="white" onClick={editHandler} />
+        <FaEdit color="white" onClick={() => setInputEdit(prev => !prev)} />
         <FaTrash color="white" onClick={() => delHandler(id)} />
       </div>
     </div>
