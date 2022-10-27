@@ -3,6 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuid4 } = require('uuid');
 
+const oldData = require('./data.json');
+
+console.log(oldData);
+
 const route = Router();
 
 const filePath = path.join(__dirname, 'data.json');
@@ -20,7 +24,6 @@ route.get('/', (req, res) => {
 });
 
 route.post('/', (req, res) => {
-  const oldData = require('./data.json');
   //console.log(oldData);
   const { data } = req.body;
   const todo = { todo: data, id: uuid4(), isDone: false };
@@ -38,7 +41,6 @@ route.post('/', (req, res) => {
 
 route.post('/set-element/:id', (req, res) => {
   const id = req.params.id;
-  const oldData = require('./data.json');
   //console.log(oldData);
 
   const newData = oldData.map((data) => {
@@ -60,7 +62,6 @@ route.post('/set-element/:id', (req, res) => {
 
 route.put('/check/:id', (req, res) => {
   const id = req.params.id;
-  const oldData = require('./data.json');
   //console.log(oldData);
 
   const newData = oldData.map((data) => {
@@ -80,7 +81,6 @@ route.put('/check/:id', (req, res) => {
 
 route.delete('/del/:id', (req, res) => {
   const id = req.params.id;
-  const oldData = require('./data.json');
   //console.log(oldData);
 
   const newData = oldData.filter((data) => data.id !== id);

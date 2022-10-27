@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
 
 const app = express();
 
@@ -18,6 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // To handle cors policy
 app.use(cors({ origin: '*' }));
+
+fs.readFile('./data.json', {encoding: 'utf-8'}, (err, data) => {
+  if(!data) fs.writeFileSync('./data.json', JSON.stringify('[]'));
+})
 
 app.get('/', (req, res) => {
   res.send({ message: 'App running succssfully' });
